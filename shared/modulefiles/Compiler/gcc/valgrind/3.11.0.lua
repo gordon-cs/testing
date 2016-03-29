@@ -1,32 +1,33 @@
 -- -*- lua -*-
 -- ===========================================================================
--- modulefiles/Compiler/gcc/fftw/3.3.4
+-- modulefiles/Compiler/gcc/valgrind/3.11.0.lua
 -- Jonathan Senning
--- 2015-01-11
+-- 2015-12-30
 -- ===========================================================================
 
 help( [[
 
-FFTW is a C subroutine library for computing the discrete Fourier
-transform (DFT) in one or more dimensions, of arbitrary input size,
-and of both real and complex data (as well as of even/odd data,
-i.e. the discrete cosine/sine transforms or DCT/DST).
+Valgrind is an instrumentation framework for building dynamic analysis
+tools.  It comes with a set of tools each of which performs some kind
+of debugging, profiling, or similar task that helps you improve your
+programs. Valgrind's architecture is modular, so new tools can be
+created easily and without disturbing the existing structure.
 ]] )
 
 ------------------------------------------------------------------------------
 
 local	basedir		= "/shared"
-local	name		= "fftw"
-local	version		= "3.3.4"
+local	name		= "valgrind"
+local	version		= "3.11.0"
 local	prefix		= pathJoin( basedir, name, version )
-local	module_family	= "FFT"
+local	module_family	= "VALGRIND"
 
 ------------------------------------------------------------------------------
 
-whatis( "Name: FFTW" )
+whatis( "Name: valgrind" )
 whatis( "Version: " .. version )
-whatis( "Description: Fast Fourier Transform library" )
-whatis( "URL: http://www.fftw.org" )
+whatis( "Description: Tool for finding memory management bugs in programs" )
+whatis( "URL: http://valgrind.org" )
 
 ------------------------------------------------------------------------------
 
@@ -34,9 +35,11 @@ prepend_path( "PATH", pathJoin( prefix, "bin" ) )
 prepend_path( "CPATH", pathJoin( prefix, "include" ) )
 prepend_path( "LIBRARY_PATH", pathJoin( prefix, "lib" ) )
 prepend_path( "LD_LIBRARY_PATH", pathJoin( prefix, "lib" ) )
-prepend_path( "MANPATH", pathJoin( prefix, "share/man" ) )
 
 ------------------------------------------------------------------------------
+
+prepend_path( "MODULEPATH",
+    pathJoin( os.getenv( "MODULEPATH_ROOT" ), module_family, name ) )
 
 family( module_family )
 

@@ -1,8 +1,8 @@
 -- -*- lua -*-
 -- ===========================================================================
--- modulefiles/Compiler/gcc/mpi/openmpi/1.10.1-pmi
+-- modulefiles/Compiler/gcc/mpi/openmpi/1.10.2
 -- Jonathan Senning
--- 2015-11-04
+-- 2016-01-22
 -- ===========================================================================
 
 help( [[
@@ -15,7 +15,7 @@ of academic, research, and industry partners.
 ------------------------------------------------------------------------------
 
 local	name		= "openmpi"
-local	version		= "1.10.1-pmi"
+local	version		= "1.10.2"
 local	prefix		= pathJoin( "/shared", name, version )
 local	module_family	= "MPI"
 
