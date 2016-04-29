@@ -16,7 +16,8 @@ of academic, research, and industry partners.
 
 local	name		= "openmpi"
 local	version		= "1.10.2"
-local	prefix		= pathJoin( "/shared", name, version )
+local	root		= string.match( myFileName(), "/[^/]*" )
+local	prefix		= pathJoin( root, name, version )
 local	module_family	= "MPI"
 
 ------------------------------------------------------------------------------
@@ -28,8 +29,8 @@ whatis( "URL: http://www.open-mpi.org" )
 
 ------------------------------------------------------------------------------
 
--- setenv( "SLURM_RESV_PORTS", "12" )
-setenv( "SLURM_MPI_TYPE", "pmi2" )
+-- pushenv( "SLURM_RESV_PORTS", "12" )
+pushenv( "SLURM_MPI_TYPE", "pmi2" )
 
 prepend_path( "PATH", pathJoin( prefix, "bin" ) )
 prepend_path( "LIBRARY_PATH", pathJoin( prefix, "lib" ) )
