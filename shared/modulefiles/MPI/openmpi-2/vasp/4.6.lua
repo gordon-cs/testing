@@ -1,8 +1,8 @@
 -- -*- lua -*-
 -- ===========================================================================
--- modulefiles/Core/vasp/4.6
+-- modulefiles/MPI/openmpi-2/vasp/4.6
 -- Jonathan Senning
--- 2015-09-22
+-- 2016-10-06
 -- ===========================================================================
 
 help( [[
@@ -23,10 +23,11 @@ in VASP.
 
 ------------------------------------------------------------------------------
 
-local   basedir         = "/shared"
+local	basedir		= string.match( myFileName(), "/[^/]*" )
 local	name		= "vasp"
 local	version		= "4.6"
-local	prefix		= pathJoin( basedir, name, version )
+local	mpi_version	= "openmpi/2.0"
+local	prefix		= pathJoin( basedir, name, version, mpi_version )
 local	module_family	= "VASP"
 
 ------------------------------------------------------------------------------
@@ -38,15 +39,9 @@ whatis( "URL: http://www.vasp.at" )
 
 ------------------------------------------------------------------------------
 
-prepend_path( "PATH",			pathJoin( prefix, "bin" ) )
--- prepend_path( "CPATH",			pathJoin( prefix, "include" ) )
--- prepend_path( "LIBRARY_PATH",		pathJoin( prefix, "lib" ) )
--- prepend_path( "LD_LIBRARY_PATH",	pathJoin( prefix, "lib" ) )
+prepend_path( "PATH", pathJoin( prefix, "bin" ) )
 
 ------------------------------------------------------------------------------
-
--- prepend_path( "MODULEPATH",
---    pathJoin( os.getenv( "MODULEPATH_ROOT" ), module_family, name ) )
 
 family( module_family )
 

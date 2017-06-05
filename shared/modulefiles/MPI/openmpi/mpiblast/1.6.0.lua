@@ -9,7 +9,7 @@ help( [[
 
 Parallel (MPI-based) version of NCBI BLAST.
 
-The Basic Local Alignment Search Tool (BLAST) finds regions ofi local
+The Basic Local Alignment Search Tool (BLAST) finds regions of local
 similarity between sequences. The program compares nucleotide or
 protein sequences to sequence databases and calculates the statistical
 significance of matches. BLAST can be used to infer functional and
@@ -19,7 +19,7 @@ members of gene families.
 
 ------------------------------------------------------------------------------
 
-local   basedir         = "/shared"
+local   basedir         = string.match( myFileName(), "/[^/]*" )
 local	name		= "mpiblast"
 local	version		= "1.6.0"
 local	mpi_version	= "openmpi"
@@ -35,15 +35,9 @@ whatis( "URL: http://www.mpiblast.org" )
 
 ------------------------------------------------------------------------------
 
-prepend_path( "PATH",			pathJoin( prefix, "bin" ) )
--- prepend_path( "CPATH",			pathJoin( prefix, "include" ) )
--- prepend_path( "LIBRARY_PATH",		pathJoin( prefix, "lib" ) )
--- prepend_path( "LD_LIBRARY_PATH",	pathJoin( prefix, "lib" ) )
+prepend_path( "PATH", pathJoin( prefix, "bin" ) )
 
 ------------------------------------------------------------------------------
-
--- prepend_path( "MODULEPATH",
---    pathJoin( os.getenv( "MODULEPATH_ROOT" ), module_family, name ) )
 
 family( module_family )
 
